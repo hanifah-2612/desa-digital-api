@@ -6,7 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Traits\UUID;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -45,8 +46,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function scopeSearch($query, $search)
+    {
+        return $query->where ('name','like','%'.$search.'%')
+        ->orWhere('email','like','%'.$search.'%');
+    }
         public function headOfFamily()
         {
             return $this->hasOne(HeadOfFamily::class);
         }
+        public function FamilyMember()
+    {
+        return $this->hasOne(FamilyMember::class);
+    }
+
+
+    public function deveplomentApplicants()
+    {
+        return $this->hasMany(DeveplomentApplicant::class);
+    }
 }

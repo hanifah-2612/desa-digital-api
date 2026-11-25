@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid ('id')->primary();
 
             $table->uuid ('user_id');
-            $table->foreign ('user_id')->references('id')->on('user');
+            $table->foreign ('user_id')->references('id')->on('users');
 
             $table->string('profil_picture');
             $table->integer('identity_number');

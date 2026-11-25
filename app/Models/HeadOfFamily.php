@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Traits\UUID;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HeadOfFamily extends Model
 {
@@ -21,4 +23,16 @@ class HeadOfFamily extends Model
         {
             return $this->belongsTo(User::class);
         }
+        public function FamilyMembers()
+    {
+        return $this->hasMany(FamilyMember::class);
+    }
+    public function SocialassistanceRecipients()
+    {
+        return $this->hasMany(SocialAssistenceRecipient::class);
+    }
+    public function EventParticipants()
+    {
+        return $this->hasMany(EventParticipant::class);
+    }
 }
