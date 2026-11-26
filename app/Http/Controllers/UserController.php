@@ -7,9 +7,15 @@ use App\Interfaces\UserRepositoryInterface;
 class UserController extends Controller
 {
     private UserRepositoryInterface $UserRepository;
-    public function index()
+    public function_construct(UserRepositoryInterface $UserRepotory)
     {
-        //
+        $this->UserRepotory = $UserRepotory;
+    }
+    public function index(Request $request)
+    {
+        try{
+            
+        }
     }
 
     /**
